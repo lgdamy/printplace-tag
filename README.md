@@ -7,3 +7,5 @@ O cálculo desenha uma página escalada de acordo com o espaço disponível e co
 Adicionalmente, um ícone sinaliza o usuário se ele está utilizando a melhor orientação possível para impressão.
 
 Surpreendentemente, nenhuma ferramenta da Corel faz isso automaticamente.
+
+![Screenshot](https://github.com/lgdamy/printplace-tag/blob/assets/Screenshot.png)
