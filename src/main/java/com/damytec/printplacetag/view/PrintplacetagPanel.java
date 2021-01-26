@@ -3,14 +3,22 @@ package com.damytec.printplacetag.view;
 import com.damytec.printplacetag.enums.Folha;
 import com.damytec.printplacetag.enums.Orientacao;
 import com.damytec.printplacetag.pojo.ResultadoCalculo;
+import com.damytec.printplacetag.pojo.ShowOptions;
 import com.damytec.printplacetag.service.PrintplacetagService;
 import com.damytec.printplacetag.ui.BaseWindow;
 import com.damytec.printplacetag.util.ImageUtil;
 import com.damytec.printplacetag.util.KeyboardUtil;
+import com.damytec.printplacetag.util.SimpleDocumentListener;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.EnumSet;
 
 /**
@@ -32,6 +40,14 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
     private JPanel imagePanel;
     private JSplitPane splitPane;
     private JLabel resultLabel;
+    private JCheckBox showTags;
+    private JCheckBox showCorte;
+    private JCheckBox showFolha;
+    private JCheckBox showMargem;
+    private JLabel bestLabel;
+
+    private ImageIcon ok;
+    private ImageIcon nok;
 
     private static final String DEFAULT_LARGURA = "40";
     private static final String DEFAULT_ALTURA = "15";
@@ -41,6 +57,7 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
     private PrintplacetagService service;
 
     public PrintplacetagPanel() {
+        icones();
         EnumSet.allOf(Folha.class).forEach(folhaCombo::addItem);
         defaults(null);
         service = PrintplacetagService.getInstance();
@@ -48,10 +65,16 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
         paisagemRadio.addActionListener(this::toggleRetrato);
         calcularButton.addActionListener(this::calcular);
         limparButton.addActionListener(this::defaults);
+        showTags.addActionListener(this::calcular);
+        showMargem.addActionListener(this::calcular);
+        showFolha.addActionListener(this::calcular);
+        showCorte.addActionListener(this::calcular);
+        folhaCombo.addActionListener(this::calcular);
+        folhaCombo.addActionListener(this::calcular);
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this.dispatcher());
     }
 
-    private void calcular(ActionEvent e) {
+    private void calcular(Object e) {
         try {
             ResultadoCalculo res = service.calcularQuantidade(
                     Integer.parseInt(margemField.getText()),
@@ -59,21 +82,31 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
                     Integer.parseInt(larguraField.getText()),
                     Integer.parseInt(alturaField.getText()),
                     (Folha) folhaCombo.getSelectedItem(),
-                    retratoRadio.isSelected() ? Orientacao.RETRATO : Orientacao.PAISAGEM);
+                    retratoRadio.isSelected() ? Orientacao.RETRATO : Orientacao.PAISAGEM,
+                    new ShowOptions(showTags.isSelected(), showFolha.isSelected(), showCorte.isSelected(), showMargem.isSelected()));
 
             pageImage.setIcon(new ImageIcon(ImageUtil.resize(res.getImg(),imagePanel.getHeight() - 10,imagePanel.getWidth() -10)));
             resultLabel.setText(res.getTpf().toString());
+            resultLabel.setIcon(res.isBest() ? ok : nok);
         } catch (Exception ex) {
             Toolkit.getDefaultToolkit().beep();
         }
     }
 
+    private void icones() {
+        this.ok = new ImageIcon(PrintplacetagPanel.class.getClassLoader().getResource("images/ok.gif"));
+        this.nok = new ImageIcon(PrintplacetagPanel.class.getClassLoader().getResource("images/nok.png"));
+    }
+
+
     private void togglePaisagem(ActionEvent e) {
         paisagemRadio.setSelected(!paisagemRadio.isSelected());
+        this.calcular(null);
     }
 
     private void toggleRetrato(ActionEvent e) {
         retratoRadio.setSelected(!retratoRadio.isSelected());
+        this.calcular(null);
     }
 
     private KeyEventDispatcher dispatcher() {
@@ -93,6 +126,10 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
         this.margemField.setText(DEFAULT_MARGEM);
         this.espacoField.setText(DEFAULT_ESPACO);
         this.folhaCombo.setSelectedItem(Folha.A4);
+        this.showCorte.setSelected(true);
+        this.showFolha.setSelected(true);
+        this.showTags.setSelected(true);
+        this.showMargem.setSelected(true);
     }
 
     @Override

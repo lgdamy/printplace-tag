@@ -11,9 +11,12 @@ public class ResultadoCalculo {
 
     private TagsPorFolha tpf;
 
-    public ResultadoCalculo(Image img, TagsPorFolha tpf) {
+    private boolean best;
+
+    public ResultadoCalculo(Image img, TagsPorFolha tpf, boolean best) {
         this.img = img;
         this.tpf = tpf;
+        this.best = best;
     }
 
     public Image getImg() {
@@ -22,5 +25,9 @@ public class ResultadoCalculo {
 
     public TagsPorFolha getTpf() {
         return tpf;
+    }
+
+    public boolean isBest() {
+        return best;
     }
 }

@@ -1,7 +1,5 @@
 package com.damytec.printplacetag.util;
 
-import sun.awt.ExtendedKeyCodes;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
