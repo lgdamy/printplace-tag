@@ -59,4 +59,20 @@ public class ImageUtil {
         }
         return bi;
     }
+
+    public static Image resize(Image img, int maxHeight, int maxWidth) {
+        int originalWidth = img.getWidth(null);
+        int originalHeight = img.getHeight(null);
+        int newHeight = originalHeight;
+        int newWidth = originalWidth;
+        if (newWidth > maxWidth) {
+            newWidth = maxWidth;
+            newHeight = ( newWidth * originalHeight) / originalWidth;
+        }
+        if (newHeight > maxHeight) {
+            newHeight = maxHeight;
+            newWidth = ( newHeight * originalWidth ) / originalHeight;
+        }
+        return img.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+    }
 }

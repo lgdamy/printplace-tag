@@ -6,7 +6,7 @@
 
     <groupId>com.damytec</groupId>
     <artifactId>printplace-tag</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <dependencies>
         <dependency>
@@ -74,7 +74,7 @@
                                 </path>
 
                                 <taskdef name="javac2" classpathref="j2cp" classname="com.intellij.ant.Javac2"/>
-                                <javac2 destdir="${project.basedir}\target\classes" includeantruntime="false">
+                                <javac2 destdir="${project.basedir}/target/classes" includeantruntime="true">
                                     <src refid="j2sp"/>
                                 </javac2>
                             </tasks>
