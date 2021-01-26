@@ -114,25 +114,6 @@
                   <model/>
                 </properties>
               </component>
-              <component id="b70a2" class="javax.swing.JRadioButton" binding="retratoRadio">
-                <constraints>
-                  <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <selected value="true"/>
-                  <text value="Retrato"/>
-                </properties>
-              </component>
-              <component id="1fa22" class="javax.swing.JRadioButton" binding="paisagemRadio">
-                <constraints>
-                  <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Paisagem"/>
-                </properties>
-              </component>
               <grid id="34e7d" binding="spacer" layout-manager="BorderLayout" hgap="0" vgap="0">
                 <constraints>
                   <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -221,6 +202,24 @@
               <component id="83a35" class="javax.swing.JLabel" binding="bestLabel">
                 <constraints>
                   <grid row="3" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="802bb" class="javax.swing.JButton" binding="orientacaoButton">
+                <constraints>
+                  <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="9dc95" class="javax.swing.JButton" binding="formatoButton">
+                <constraints>
+                  <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>

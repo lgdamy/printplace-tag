@@ -1,6 +1,7 @@
 package com.damytec.printplacetag.view;
 
 import com.damytec.printplacetag.enums.Folha;
+import com.damytec.printplacetag.enums.Formato;
 import com.damytec.printplacetag.enums.Orientacao;
 import com.damytec.printplacetag.pojo.ResultadoCalculo;
 import com.damytec.printplacetag.pojo.ShowOptions;
@@ -45,6 +46,8 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
     private JCheckBox showFolha;
     private JCheckBox showMargem;
     private JLabel bestLabel;
+    private JButton orientacaoButton;
+    private JButton formatoButton;
 
     private ImageIcon ok;
     private ImageIcon nok;
@@ -61,9 +64,9 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
         EnumSet.allOf(Folha.class).forEach(folhaCombo::addItem);
         defaults(null);
         service = PrintplacetagService.getInstance();
-        retratoRadio.addActionListener(this::togglePaisagem);
-        paisagemRadio.addActionListener(this::toggleRetrato);
         calcularButton.addActionListener(this::calcular);
+        formatoButton.addActionListener(this::toggleFormato);
+        orientacaoButton.addActionListener(this::toggleOrientacao);
         limparButton.addActionListener(this::defaults);
         showTags.addActionListener(this::calcular);
         showMargem.addActionListener(this::calcular);
@@ -82,7 +85,8 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
                     Integer.parseInt(larguraField.getText()),
                     Integer.parseInt(alturaField.getText()),
                     (Folha) folhaCombo.getSelectedItem(),
-                    retratoRadio.isSelected() ? Orientacao.RETRATO : Orientacao.PAISAGEM,
+                    orientacaoButton.getText().equals(Orientacao.RETRATO.name()) ? Orientacao.RETRATO : Orientacao.PAISAGEM,
+                    Formato.from(formatoButton.getText()),
                     new ShowOptions(showTags.isSelected(), showFolha.isSelected(), showCorte.isSelected(), showMargem.isSelected()));
 
             pageImage.setIcon(new ImageIcon(ImageUtil.resize(res.getImg(),imagePanel.getHeight() - 10,imagePanel.getWidth() -10)));
@@ -99,13 +103,17 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
     }
 
 
-    private void togglePaisagem(ActionEvent e) {
-        paisagemRadio.setSelected(!paisagemRadio.isSelected());
+    private void toggleOrientacao(ActionEvent e) {
+        if (orientacaoButton.getText().equals(Orientacao.RETRATO.name())) {
+            orientacaoButton.setText(Orientacao.PAISAGEM.name());
+        } else {
+            orientacaoButton.setText(Orientacao.RETRATO.name());
+        }
         this.calcular(null);
     }
 
-    private void toggleRetrato(ActionEvent e) {
-        retratoRadio.setSelected(!retratoRadio.isSelected());
+    private void toggleFormato(ActionEvent e) {
+        formatoButton.setText(Formato.from(formatoButton.getText()).next().name());
         this.calcular(null);
     }
 
@@ -119,12 +127,12 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
     }
 
     private void defaults(ActionEvent e) {
-        this.retratoRadio.setSelected(true);
-        this.paisagemRadio.setSelected(false);
         this.alturaField.setText(DEFAULT_ALTURA);
         this.larguraField.setText(DEFAULT_LARGURA);
         this.margemField.setText(DEFAULT_MARGEM);
         this.espacoField.setText(DEFAULT_ESPACO);
+        this.orientacaoButton.setText(Orientacao.RETRATO.name());
+        this.formatoButton.setText(Formato.RETO.name());
         this.folhaCombo.setSelectedItem(Folha.A4);
         this.showCorte.setSelected(true);
         this.showFolha.setSelected(true);

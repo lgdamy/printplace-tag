@@ -1,6 +1,7 @@
 package com.damytec.printplacetag.service;
 
 import com.damytec.printplacetag.enums.Folha;
+import com.damytec.printplacetag.enums.Formato;
 import com.damytec.printplacetag.enums.Orientacao;
 import com.damytec.printplacetag.pojo.ResultadoCalculo;
 import com.damytec.printplacetag.pojo.ShowOptions;
@@ -27,6 +28,7 @@ public class PrintplacetagService {
                                                int altura,
                                                Folha folha,
                                                Orientacao orientacao,
+                                               Formato formato,
                                                ShowOptions options
     ) {
         if (margem < 0 || espaco < 0 || largura <= 0 || altura <= 0) {
@@ -35,7 +37,7 @@ public class PrintplacetagService {
         int larguraFolha = orientacao == Orientacao.PAISAGEM ? folha.getAltura() : folha.getLargura();
         int alturaFolha = orientacao == Orientacao.PAISAGEM ? folha.getLargura() : folha.getAltura();
         TagsPorFolha original = calcular(margem, espaco, largura, altura,larguraFolha, alturaFolha);
-        Image image = PageCreator.getInstance().createPage(alturaFolha,larguraFolha,altura,largura,espaco, margem,original, options);
+        Image image = PageCreator.getInstance().createPage(alturaFolha,larguraFolha,altura,largura,espaco, margem, formato, original, options);
         TagsPorFolha alternativo = calcular(margem,espaco,largura,altura,alturaFolha,larguraFolha);
 
         return new ResultadoCalculo(image, original, original.getTotal() >= alternativo.getTotal());
