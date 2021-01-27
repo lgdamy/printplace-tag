@@ -3,24 +3,21 @@ package com.damytec.printplacetag.view;
 import com.damytec.printplacetag.enums.Folha;
 import com.damytec.printplacetag.enums.Formato;
 import com.damytec.printplacetag.enums.Orientacao;
+import com.damytec.printplacetag.enums.Tema;
 import com.damytec.printplacetag.pojo.ResultadoCalculo;
 import com.damytec.printplacetag.pojo.ShowOptions;
 import com.damytec.printplacetag.service.PrintplacetagService;
 import com.damytec.printplacetag.ui.BaseWindow;
+import com.damytec.printplacetag.ui.CustomButton;
 import com.damytec.printplacetag.util.ImageUtil;
 import com.damytec.printplacetag.util.KeyboardUtil;
-import com.damytec.printplacetag.util.SimpleDocumentListener;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author lgdamy on 25/01/2021
@@ -29,28 +26,42 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
     private JPanel root;
     private JTextField larguraField;
     private JTextField alturaField;
-    private JComboBox folhaCombo;
+    private JComboBox<Folha> folhaCombo;
     private JTextField margemField;
     private JTextField espacoField;
     private JButton calcularButton;
     private JButton limparButton;
-    private JRadioButton retratoRadio;
-    private JRadioButton paisagemRadio;
-    private JPanel spacer;
     private JLabel pageImage;
     private JPanel imagePanel;
-    private JSplitPane splitPane;
+    private JSplitPane vSplit;
     private JLabel resultLabel;
     private JCheckBox showTags;
     private JCheckBox showCorte;
     private JCheckBox showFolha;
     private JCheckBox showMargem;
-    private JLabel bestLabel;
-    private JButton orientacaoButton;
-    private JButton formatoButton;
+    private JPanel customButtonHub;
+    private JPanel menusPanel;
+    private JPanel resultPanel;
+    private JTextPane resultText;
+    private JSplitPane hSplit;
+
+    private CustomButton retratoBtn;
+    private CustomButton paisagemBtn;
+    private CustomButton retoBtn;
+    private CustomButton ovalBtn;
+    private CustomButton disneyBtn;
+    private CustomButton temaBtn;
+
 
     private ImageIcon ok;
     private ImageIcon nok;
+
+    private Orientacao orientacao;
+    private Formato formato;
+    private Tema tema = Tema.YELLOW_BLACK;
+
+    private static final Map<Orientacao, CustomButton> orientacaoMap = new HashMap<>();
+    private static final Map<Formato, CustomButton> formatoMap = new HashMap<>();
 
     private static final String DEFAULT_LARGURA = "40";
     private static final String DEFAULT_ALTURA = "15";
@@ -61,20 +72,14 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
 
     public PrintplacetagPanel() {
         icones();
-        EnumSet.allOf(Folha.class).forEach(folhaCombo::addItem);
-        defaults(null);
         service = PrintplacetagService.getInstance();
-        calcularButton.addActionListener(this::calcular);
-        formatoButton.addActionListener(this::toggleFormato);
-        orientacaoButton.addActionListener(this::toggleOrientacao);
-        limparButton.addActionListener(this::defaults);
-        showTags.addActionListener(this::calcular);
-        showMargem.addActionListener(this::calcular);
-        showFolha.addActionListener(this::calcular);
-        showCorte.addActionListener(this::calcular);
-        folhaCombo.addActionListener(this::calcular);
-        folhaCombo.addActionListener(this::calcular);
+        EnumSet.allOf(Folha.class).stream().forEach(folhaCombo::addItem);
+        defaults(null);
+        acoes();
+        customButtonMaps();
+        customButtonShow();
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this.dispatcher());
+        hSplit.setResizeWeight(0.3);
     }
 
     private void calcular(Object e) {
@@ -85,16 +90,80 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
                     Integer.parseInt(larguraField.getText()),
                     Integer.parseInt(alturaField.getText()),
                     (Folha) folhaCombo.getSelectedItem(),
-                    orientacaoButton.getText().equals(Orientacao.RETRATO.name()) ? Orientacao.RETRATO : Orientacao.PAISAGEM,
-                    Formato.from(formatoButton.getText()),
-                    new ShowOptions(showTags.isSelected(), showFolha.isSelected(), showCorte.isSelected(), showMargem.isSelected()));
+                    orientacao,
+                    formato,
+                    new ShowOptions(showTags.isSelected(), showFolha.isSelected(), showCorte.isSelected(), showMargem.isSelected(), tema));
 
-            pageImage.setIcon(new ImageIcon(ImageUtil.resize(res.getImg(),imagePanel.getHeight() - 10,imagePanel.getWidth() -10)));
-            resultLabel.setText(res.getTpf().toString());
+            pageImage.setIcon(new ImageIcon(ImageUtil.resize(res.getImg(), imagePanel.getHeight() - 10, imagePanel.getWidth() - 10)));
+            resultText.setText(res.getTpf().toHtml());
             resultLabel.setIcon(res.isBest() ? ok : nok);
+            customButtonShow();
         } catch (Exception ex) {
+            ex.printStackTrace();
             Toolkit.getDefaultToolkit().beep();
         }
+    }
+
+    private void acoes() {
+        calcularButton.addActionListener(this::calcular);
+        limparButton.addActionListener(this::defaults);
+        showTags.addActionListener(this::calcular);
+        showMargem.addActionListener(this::calcular);
+        showFolha.addActionListener(this::calcular);
+        showCorte.addActionListener(this::calcular);
+        folhaCombo.addActionListener(this::calcular);
+        paisagemBtn = new CustomButton("images/paisagem.png") {
+            @Override
+            public void actionPerformed() {
+                toggleOrientacao();
+            }
+        };
+        retratoBtn = new CustomButton("images/retrato.png") {
+            @Override
+            public void actionPerformed() {
+                toggleOrientacao();
+            }
+        };
+        retoBtn = new CustomButton("images/reto.png") {
+            @Override
+            public void actionPerformed() {
+                toggleFormato();
+            }
+        };
+        ovalBtn = new CustomButton("images/oval.png") {
+            @Override
+            public void actionPerformed() {
+                toggleFormato();
+            }
+        };
+        disneyBtn = new CustomButton("images/disney.png") {
+            @Override
+            public void actionPerformed() {
+                toggleFormato();
+            }
+        };
+
+        temaBtn = new CustomButton("images/cmyk.png") {
+            @Override
+            public void actionPerformed() {
+                toggleTema();
+            }
+        };
+    }
+
+    private void toggleFormato() {
+        formato = formato.next();
+        calcular(null);
+    }
+
+    private void toggleTema() {
+        tema = tema.next();
+        calcular(null);
+    }
+
+    private void toggleOrientacao() {
+        orientacao = orientacao == Orientacao.RETRATO ? Orientacao.PAISAGEM : Orientacao.RETRATO;
+        calcular(null);
     }
 
     private void icones() {
@@ -103,27 +172,21 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
     }
 
 
-    private void toggleOrientacao(ActionEvent e) {
-        if (orientacaoButton.getText().equals(Orientacao.RETRATO.name())) {
-            orientacaoButton.setText(Orientacao.PAISAGEM.name());
-        } else {
-            orientacaoButton.setText(Orientacao.RETRATO.name());
-        }
-        this.calcular(null);
-    }
-
-    private void toggleFormato(ActionEvent e) {
-        formatoButton.setText(Formato.from(formatoButton.getText()).next().name());
-        this.calcular(null);
-    }
-
     private KeyEventDispatcher dispatcher() {
-        return new KeyboardUtil(){
-                    @Override
-                    public void enter() {
-                        calcular(null);
-                    }
-                }.shortcuts();
+        return new KeyboardUtil() {
+            @Override
+            public void enter() {
+                calcular(null);
+            }
+        }.shortcuts();
+    }
+
+    private void customButtonMaps() {
+        orientacaoMap.put(Orientacao.RETRATO, retratoBtn);
+        orientacaoMap.put(Orientacao.PAISAGEM, paisagemBtn);
+        formatoMap.put(Formato.RETO, retoBtn);
+        formatoMap.put(Formato.OVAL, ovalBtn);
+        formatoMap.put(Formato.DISNEY, disneyBtn);
     }
 
     private void defaults(ActionEvent e) {
@@ -131,13 +194,21 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
         this.larguraField.setText(DEFAULT_LARGURA);
         this.margemField.setText(DEFAULT_MARGEM);
         this.espacoField.setText(DEFAULT_ESPACO);
-        this.orientacaoButton.setText(Orientacao.RETRATO.name());
-        this.formatoButton.setText(Formato.RETO.name());
-        this.folhaCombo.setSelectedItem(Folha.A4);
+        this.orientacao = Orientacao.RETRATO;
+        this.formato = Formato.RETO;
         this.showCorte.setSelected(true);
         this.showFolha.setSelected(true);
         this.showTags.setSelected(true);
         this.showMargem.setSelected(true);
+        this.folhaCombo.setSelectedItem(Folha.A4);
+    }
+
+    private void customButtonShow() {
+        customButtonHub.removeAll();
+        customButtonHub.add(orientacaoMap.get(orientacao));
+        customButtonHub.add(formatoMap.get(formato));
+        customButtonHub.add(temaBtn);
+        customButtonHub.updateUI();
     }
 
     @Override
@@ -145,9 +216,8 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
         return this.root;
     }
 
-//    Sobrescreva esse metodo apenas se sua janela vai mudar de titulo
-//    @Override
-//    public String title() {
-//        return "Meu titulo especial";
-//    }
+    @Override
+    public String title() {
+        return "Skyfall - " + PrintplacetagPanel.class.getPackage().getImplementationVersion();
+    }
 }

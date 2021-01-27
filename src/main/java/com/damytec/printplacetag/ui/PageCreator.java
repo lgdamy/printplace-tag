@@ -35,15 +35,19 @@ public class PageCreator {
         g2d.drawRect(0, 0, wPage, hPage);
 
         if (opts.showFolha()) {
+            g2d.setColor(opts.getTema().getPagina());
             page(g2d, hPage, wPage);
         }
         if (opts.showTags()) {
+            g2d.setColor(opts.getTema().getTag());
             tags(g2d, hPage, wPage, hTag, wTag, space, formato, qty);
         }
         if (opts.showCorte()) {
+            g2d.setColor(opts.getTema().getCorte());
             strokes(g2d, hPage, wPage, hTag, wTag, space, formato, qty);
         }
         if (opts.showMargem()) {
+            g2d.setColor(opts.getTema().getMargem());
             margin(g2d, hPage, wPage, margin);
         }
 
@@ -55,7 +59,6 @@ public class PageCreator {
         if (qty.getQtdX() == 0 || qty.getQtdY() == 0) {
             return;
         }
-        g2d.setPaint(Color.GRAY);
         int x, y;
         y = (hPage - (qty.getQtdY() * hTag) - (space * (qty.getQtdY() - 1))) / 2;
         for (int i = 0; i < qty.getQtdY(); i++) {
@@ -87,7 +90,6 @@ public class PageCreator {
         if (qty.getQtdX() == 0 || qty.getQtdY() == 0) {
             return;
         }
-        g2d.setPaint(Color.CYAN);
         int x, y;
         y = (hPage - (qty.getQtdY() * hTag) - (space * (qty.getQtdY() - 1))) / 2;
         for (int i = 0; i < qty.getQtdY(); i++) {
@@ -107,12 +109,10 @@ public class PageCreator {
     }
 
     private void page(Graphics2D g2d, int hPage, int wPage) {
-        g2d.setPaint(Color.PINK);
         g2d.fillRect(0, 0, wPage, hPage);
     }
 
     private void margin(Graphics2D g2d, int hPage, int wPage, int margin) {
-        g2d.setColor(Color.LIGHT_GRAY);
         g2d.fillRect(0, 0, wPage, margin);
         g2d.fillRect(0, 0, margin, hPage);
         g2d.fillRect(wPage - margin, 0, margin, hPage);

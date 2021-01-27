@@ -2,12 +2,12 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.damytec.printplacetag.view.PrintplacetagPanel">
   <grid id="27dc6" binding="root" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="696" height="400"/>
+      <xy x="20" y="20" width="837" height="400"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <splitpane id="78f41" binding="splitPane">
+      <splitpane id="78f41" binding="vSplit">
         <constraints border-constraint="Center"/>
         <properties>
           <continuousLayout value="false"/>
@@ -17,217 +17,6 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="d5f18" layout-manager="GridBagLayout">
-            <constraints>
-              <splitpane position="left"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="71d8c" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="0" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Largura:"/>
-                </properties>
-              </component>
-              <component id="c9d8c" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="0" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Altura:"/>
-                </properties>
-              </component>
-              <component id="5312f" class="javax.swing.JTextField" binding="larguraField">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
-                  <gridbag top="0" left="1" bottom="0" right="1" weightx="0.15" weighty="0.0"/>
-                </constraints>
-                <properties/>
-              </component>
-              <component id="9024a" class="javax.swing.JTextField" binding="alturaField">
-                <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
-                  <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties/>
-              </component>
-              <component id="b94ed" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="0" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Margem:"/>
-                </properties>
-              </component>
-              <component id="5edef" class="javax.swing.JTextField" binding="margemField">
-                <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
-                  <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties/>
-              </component>
-              <component id="c35c" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="0" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Espaçamento:"/>
-                </properties>
-              </component>
-              <component id="e006c" class="javax.swing.JTextField" binding="espacoField">
-                <constraints>
-                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
-                  <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties/>
-              </component>
-              <component id="20375" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Folha:"/>
-                </properties>
-              </component>
-              <component id="540f" class="javax.swing.JComboBox" binding="folhaCombo">
-                <constraints>
-                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="1" bottom="0" right="1" weightx="0.15" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <model/>
-                </properties>
-              </component>
-              <grid id="34e7d" binding="spacer" layout-manager="BorderLayout" hgap="0" vgap="0">
-                <constraints>
-                  <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.75" weighty="0.0"/>
-                </constraints>
-                <properties/>
-                <border type="empty"/>
-                <children/>
-              </grid>
-              <component id="721d9" class="javax.swing.JLabel" binding="resultLabel">
-                <constraints>
-                  <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value=""/>
-                </properties>
-              </component>
-              <component id="89d86" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Exibir:"/>
-                </properties>
-              </component>
-              <component id="8977b" class="javax.swing.JCheckBox" binding="showTags">
-                <constraints>
-                  <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <selected value="true"/>
-                  <text value="Tags"/>
-                </properties>
-              </component>
-              <component id="1adb3" class="javax.swing.JCheckBox" binding="showCorte">
-                <constraints>
-                  <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <selected value="true"/>
-                  <text value="Corte"/>
-                </properties>
-              </component>
-              <component id="440a4" class="javax.swing.JCheckBox" binding="showFolha">
-                <constraints>
-                  <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <selected value="true"/>
-                  <text value="Folha"/>
-                </properties>
-              </component>
-              <component id="2abaf" class="javax.swing.JButton" binding="calcularButton" default-binding="true">
-                <constraints>
-                  <grid row="3" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="0" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Calcular"/>
-                </properties>
-              </component>
-              <component id="61373" class="javax.swing.JButton" binding="limparButton" default-binding="true">
-                <constraints>
-                  <grid row="3" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="1" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Limpar"/>
-                </properties>
-              </component>
-              <component id="ecf17" class="javax.swing.JCheckBox" binding="showMargem">
-                <constraints>
-                  <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <selected value="true"/>
-                  <text value="Margem"/>
-                </properties>
-              </component>
-              <component id="83a35" class="javax.swing.JLabel" binding="bestLabel">
-                <constraints>
-                  <grid row="3" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value=""/>
-                </properties>
-              </component>
-              <component id="802bb" class="javax.swing.JButton" binding="orientacaoButton">
-                <constraints>
-                  <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value=""/>
-                </properties>
-              </component>
-              <component id="9dc95" class="javax.swing.JButton" binding="formatoButton">
-                <constraints>
-                  <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value=""/>
-                </properties>
-              </component>
-            </children>
-          </grid>
           <grid id="9c4e1" binding="imagePanel" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
               <splitpane position="right"/>
@@ -245,6 +34,212 @@
               </component>
             </children>
           </grid>
+          <splitpane id="92398" binding="hSplit">
+            <constraints>
+              <splitpane position="left"/>
+            </constraints>
+            <properties>
+              <dividerSize value="5"/>
+              <enabled value="false"/>
+              <oneTouchExpandable value="false"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="d5f18" binding="menusPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <splitpane position="left"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="71d8c" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag top="0" left="0" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Largura:"/>
+                    </properties>
+                  </component>
+                  <component id="c9d8c" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag top="0" left="0" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Altura:"/>
+                    </properties>
+                  </component>
+                  <component id="5312f" class="javax.swing.JTextField" binding="larguraField">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                      <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <columns value="5"/>
+                    </properties>
+                  </component>
+                  <component id="9024a" class="javax.swing.JTextField" binding="alturaField">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                      <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="b94ed" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag top="0" left="0" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Margem:"/>
+                    </properties>
+                  </component>
+                  <component id="5edef" class="javax.swing.JTextField" binding="margemField">
+                    <constraints>
+                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                      <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="c35c" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag top="0" left="0" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Espaçamento:"/>
+                    </properties>
+                  </component>
+                  <component id="e006c" class="javax.swing.JTextField" binding="espacoField">
+                    <constraints>
+                      <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                      <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="540f" class="javax.swing.JComboBox" binding="folhaCombo">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <model/>
+                    </properties>
+                  </component>
+                  <component id="8977b" class="javax.swing.JCheckBox" binding="showTags">
+                    <constraints>
+                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <selected value="true"/>
+                      <text value="Tags"/>
+                    </properties>
+                  </component>
+                  <component id="1adb3" class="javax.swing.JCheckBox" binding="showCorte">
+                    <constraints>
+                      <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <selected value="true"/>
+                      <text value="Corte"/>
+                    </properties>
+                  </component>
+                  <component id="440a4" class="javax.swing.JCheckBox" binding="showFolha">
+                    <constraints>
+                      <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <selected value="true"/>
+                      <text value="Folha"/>
+                    </properties>
+                  </component>
+                  <component id="ecf17" class="javax.swing.JCheckBox" binding="showMargem">
+                    <constraints>
+                      <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <selected value="true"/>
+                      <text value="Margem"/>
+                    </properties>
+                  </component>
+                  <grid id="df670" binding="customButtonHub" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                    <constraints>
+                      <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children/>
+                  </grid>
+                  <component id="2abaf" class="javax.swing.JButton" binding="calcularButton" default-binding="true">
+                    <constraints>
+                      <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="0" left="0" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Calcular"/>
+                    </properties>
+                  </component>
+                  <component id="61373" class="javax.swing.JButton" binding="limparButton" default-binding="true">
+                    <constraints>
+                      <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="0" left="1" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Limpar"/>
+                    </properties>
+                  </component>
+                  <component id="721d9" class="javax.swing.JLabel" binding="resultLabel">
+                    <constraints>
+                      <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                  <grid id="2eccd" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                    <constraints>
+                      <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="1.0" weighty="0.0"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children/>
+                  </grid>
+                </children>
+              </grid>
+              <grid id="4bff5" binding="resultPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <splitpane position="right"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="2da9b" class="javax.swing.JTextPane" binding="resultText">
+                    <constraints border-constraint="Center"/>
+                    <properties>
+                      <contentType value="text/html"/>
+                      <editable value="false"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </splitpane>
         </children>
       </splitpane>
     </children>

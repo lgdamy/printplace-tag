@@ -31,4 +31,12 @@ public class TagsPorFolha {
     public String toString() {
         return String.format("%d tags por folha: %d x %d", getTotal(), qtdX, qtdY);
     }
+
+    public String toHtml() {
+        StringBuilder sb = new StringBuilder("<html>");
+        sb.append("<h3 style=\"text-align\":center;>Caber\u00e3o " + getTotal() + " unidades</h3>");
+        sb.append("<p style=\"text-align\":center;>" +qtdX + " x " + qtdY + "</p>");
+        sb.append("</body></html>");
+        return sb.toString();
+    }
 }

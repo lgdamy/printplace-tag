@@ -6,7 +6,7 @@
 
     <groupId>com.damytec</groupId>
     <artifactId>printplace-tag</artifactId>
-    <version>1.0.3</version>
+    <version>1.1.0</version>
 
     <dependencies>
         <dependency>
@@ -20,6 +20,7 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
     <build>
+        <finalName>Skyfall</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -31,6 +32,8 @@
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
                             <mainClass>com.damytec.printplacetag.App</mainClass>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                         </manifest>
                     </archive>
                 </configuration>
@@ -67,14 +70,14 @@
                         <configuration>
                             <tasks>
                                 <path id="j2cp">
-                                    <fileset dir="${project.basedir}/src/main/resources/antlibs" includes="*.jar"/>
+                                    <fileset dir="${project.basedir}/antlibs" includes="*.jar"/>
                                 </path>
                                 <path id="j2sp">
-                                    <pathelement location="${project.basedir}/src/main/java"/> 
+                                    <pathelement location="${project.basedir}/src/main/java"/>
                                 </path>
 
                                 <taskdef name="javac2" classpathref="j2cp" classname="com.intellij.ant.Javac2"/>
-                                <javac2 destdir="${project.basedir}/target/classes" includeantruntime="true">
+                                <javac2 destdir="${project.basedir}/target/classes" includeantruntime="false">
                                     <src refid="j2sp"/>
                                 </javac2>
                             </tasks>
