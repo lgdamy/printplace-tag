@@ -6,6 +6,7 @@ package com.damytec.printplacetag.pojo;
 public class TagsPorFolha {
     private int qtdX;
     private int qtdY;
+    boolean limiar;
 
     public int getQtdX() {
         return qtdX;
@@ -27,16 +28,22 @@ public class TagsPorFolha {
         return qtdX * qtdY;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%d tags por folha: %d x %d", getTotal(), qtdX, qtdY);
+    public boolean isLimiar() {
+        return limiar;
+    }
+
+    public void setLimiar(boolean limiar) {
+        this.limiar = limiar;
     }
 
     public String toHtml() {
         StringBuilder sb = new StringBuilder("<html>");
-        sb.append("<h3 style=\"text-align\":center;>Caber\u00e3o " + getTotal() + " unidades</h3>");
-        sb.append("<p style=\"text-align\":center;>" +qtdX + " x " + qtdY + "</p>");
-        sb.append("</body></html>");
+        sb.append("<p style=\"text-align\":center;\"margin-top\":0><b>" + getTotal() + " unidades por folha</b></span>");
+        sb.append("<p style=\"text-align\":center;>" +qtdX + " x " + qtdY);
+        if (limiar) {
+            sb.append("<br/>Margem atingida<br/>");
+        }
+        sb.append("</p></body></html>");
         return sb.toString();
     }
 }

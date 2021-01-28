@@ -3,6 +3,8 @@ package com.damytec.printplacetag;
 import com.damytec.printplacetag.ui.BaseWindow;
 import com.damytec.printplacetag.view.PrintplacetagPanel;
 
+import javax.swing.*;
+
 /**
  * @author lgdamy@ on 22/01/2021
  */

@@ -17,7 +17,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="9c4e1" binding="imagePanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+          <grid id="9c4e1" binding="lowerPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
               <splitpane position="right"/>
             </constraints>
@@ -32,6 +32,12 @@
                   <text value=""/>
                 </properties>
               </component>
+              <toolbar id="13000">
+                <constraints border-constraint="North"/>
+                <properties/>
+                <border type="none"/>
+                <children/>
+              </toolbar>
             </children>
           </grid>
           <splitpane id="92398" binding="hSplit">
@@ -39,6 +45,7 @@
               <splitpane position="left"/>
             </constraints>
             <properties>
+              <dividerLocation value="600"/>
               <dividerSize value="5"/>
               <enabled value="false"/>
               <oneTouchExpandable value="false"/>
@@ -126,28 +133,37 @@
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="540f" class="javax.swing.JComboBox" binding="folhaCombo">
+                  <component id="61373" class="javax.swing.JButton" binding="limparButton" default-binding="true">
                     <constraints>
-                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                      <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                      <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
                     </constraints>
                     <properties>
-                      <model/>
+                      <text value="Limpar"/>
                     </properties>
                   </component>
-                  <component id="8977b" class="javax.swing.JCheckBox" binding="showTags">
+                  <component id="2abaf" class="javax.swing.JButton" binding="calcularButton" default-binding="true">
                     <constraints>
-                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Calcular"/>
+                    </properties>
+                  </component>
+                  <component id="ecf17" class="javax.swing.JCheckBox" binding="showMargem">
+                    <constraints>
+                      <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                       <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
                     </constraints>
                     <properties>
                       <selected value="true"/>
-                      <text value="Tags"/>
+                      <text value="Margem"/>
                     </properties>
                   </component>
                   <component id="1adb3" class="javax.swing.JCheckBox" binding="showCorte">
                     <constraints>
-                      <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                       <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
                     </constraints>
                     <properties>
@@ -165,61 +181,25 @@
                       <text value="Folha"/>
                     </properties>
                   </component>
-                  <component id="ecf17" class="javax.swing.JCheckBox" binding="showMargem">
+                  <component id="8977b" class="javax.swing.JCheckBox" binding="showTags">
                     <constraints>
-                      <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                      <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
                     </constraints>
                     <properties>
                       <selected value="true"/>
-                      <text value="Margem"/>
+                      <text value="Tags"/>
                     </properties>
                   </component>
-                  <grid id="df670" binding="customButtonHub" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                  <component id="540f" class="javax.swing.JComboBox" binding="folhaCombo">
                     <constraints>
-                      <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                      <gridbag weightx="0.0" weighty="0.0"/>
-                    </constraints>
-                    <properties/>
-                    <border type="none"/>
-                    <children/>
-                  </grid>
-                  <component id="2abaf" class="javax.swing.JButton" binding="calcularButton" default-binding="true">
-                    <constraints>
-                      <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                      <gridbag top="0" left="0" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="0" left="1" bottom="0" right="1" weightx="0.0" weighty="0.0"/>
                     </constraints>
                     <properties>
-                      <text value="Calcular"/>
+                      <model/>
                     </properties>
                   </component>
-                  <component id="61373" class="javax.swing.JButton" binding="limparButton" default-binding="true">
-                    <constraints>
-                      <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                      <gridbag top="0" left="1" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
-                    </constraints>
-                    <properties>
-                      <text value="Limpar"/>
-                    </properties>
-                  </component>
-                  <component id="721d9" class="javax.swing.JLabel" binding="resultLabel">
-                    <constraints>
-                      <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                      <gridbag weightx="0.0" weighty="0.0"/>
-                    </constraints>
-                    <properties>
-                      <text value=""/>
-                    </properties>
-                  </component>
-                  <grid id="2eccd" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-                    <constraints>
-                      <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                      <gridbag weightx="1.0" weighty="0.0"/>
-                    </constraints>
-                    <properties/>
-                    <border type="none"/>
-                    <children/>
-                  </grid>
                 </children>
               </grid>
               <grid id="4bff5" binding="resultPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
@@ -234,6 +214,19 @@
                     <properties>
                       <contentType value="text/html"/>
                       <editable value="false"/>
+                    </properties>
+                  </component>
+                  <grid id="df670" binding="customButtonHub" custom-create="true" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+                    <constraints border-constraint="West"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children/>
+                  </grid>
+                  <component id="721d9" class="javax.swing.JLabel" binding="resultLabel">
+                    <constraints border-constraint="East"/>
+                    <properties>
+                      <background color="-1"/>
+                      <text value=""/>
                     </properties>
                   </component>
                 </children>

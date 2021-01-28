@@ -52,16 +52,18 @@ public class PrintplacetagService {
         TagsPorFolha tpf = new TagsPorFolha();
         int mm = margem;
         int i = 0;
-        while (mm + largura + margem < larguraFolha) {
+        while (mm + largura + margem <= larguraFolha) {
             i++;
             mm = mm + largura + espaco;
+            tpf.setLimiar(tpf.isLimiar() || (mm == larguraFolha - margem));
         }
         mm = margem;
         tpf.setQtdX(i);
         i=0;
-        while (mm + altura + margem < alturaFolha) {
+        while (mm + altura + margem <= alturaFolha) {
             i++;
             mm = mm + altura + espaco;
+            tpf.setLimiar(tpf.isLimiar() || (mm == alturaFolha - margem));
         }
         tpf.setQtdY(i);
         return tpf;

@@ -32,7 +32,7 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
     private JButton calcularButton;
     private JButton limparButton;
     private JLabel pageImage;
-    private JPanel imagePanel;
+    private JPanel lowerPanel;
     private JSplitPane vSplit;
     private JLabel resultLabel;
     private JCheckBox showTags;
@@ -56,8 +56,8 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
     private ImageIcon ok;
     private ImageIcon nok;
 
-    private Orientacao orientacao;
-    private Formato formato;
+    private Orientacao orientacao = Orientacao.RETRATO;
+    private Formato formato = Formato.RETO;
     private Tema tema = Tema.YELLOW_BLACK;
 
     private static final Map<Orientacao, CustomButton> orientacaoMap = new HashMap<>();
@@ -94,8 +94,9 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
                     formato,
                     new ShowOptions(showTags.isSelected(), showFolha.isSelected(), showCorte.isSelected(), showMargem.isSelected(), tema));
 
-            pageImage.setIcon(new ImageIcon(ImageUtil.resize(res.getImg(), imagePanel.getHeight() - 10, imagePanel.getWidth() - 10)));
+            pageImage.setIcon(new ImageIcon(ImageUtil.resize(res.getImg(), lowerPanel.getHeight() - 10, lowerPanel.getWidth() - 10)));
             resultText.setText(res.getTpf().toHtml());
+            this.resultColor(res.getTpf().isLimiar() ? Color.PINK : Color.WHITE);
             resultLabel.setIcon(res.isBest() ? ok : nok);
             customButtonShow();
         } catch (Exception ex) {
@@ -118,6 +119,7 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
                 toggleOrientacao();
             }
         };
+        paisagemBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         retratoBtn = new CustomButton("images/retrato.png") {
             @Override
             public void actionPerformed() {
@@ -194,12 +196,12 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
         this.larguraField.setText(DEFAULT_LARGURA);
         this.margemField.setText(DEFAULT_MARGEM);
         this.espacoField.setText(DEFAULT_ESPACO);
-        this.orientacao = Orientacao.RETRATO;
-        this.formato = Formato.RETO;
-        this.showCorte.setSelected(true);
-        this.showFolha.setSelected(true);
-        this.showTags.setSelected(true);
-        this.showMargem.setSelected(true);
+//        this.orientacao = Orientacao.RETRATO;
+//        this.formato = Formato.RETO;
+//        this.showCorte.setSelected(true);
+//        this.showFolha.setSelected(true);
+//        this.showTags.setSelected(true);
+//        this.showMargem.setSelected(true);
         this.folhaCombo.setSelectedItem(Folha.A4);
     }
 
@@ -211,6 +213,12 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
         customButtonHub.updateUI();
     }
 
+    private void resultColor(Color c) {
+        this.customButtonHub.setBackground(c);
+        this.resultText.setBackground(c);
+        this.resultPanel.setBackground(c);
+    }
+
     @Override
     public JPanel root() {
         return this.root;
@@ -220,4 +228,12 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
     public String title() {
         return "Skyfall - " + PrintplacetagPanel.class.getPackage().getImplementationVersion();
     }
+
+    private void createUIComponents() {
+        customButtonHub  = new JPanel();
+        customButtonHub.setLayout(new BoxLayout(customButtonHub,BoxLayout.Y_AXIS));
+        customButtonHub.setBackground(Color.WHITE);
+    }
+
+
 }

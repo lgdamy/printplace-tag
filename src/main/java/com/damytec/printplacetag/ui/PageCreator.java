@@ -29,6 +29,7 @@ public class PageCreator {
         hTag = hTag * DPI;
         wTag = wTag * DPI;
         space = space * DPI;
+        margin = margin * DPI;
         BufferedImage bi = new BufferedImage(wPage, hPage, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = bi.createGraphics();
         g2d.setColor(new Color(0, 0, 0, 0));
