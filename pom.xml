@@ -6,7 +6,8 @@
 
     <groupId>com.damytec</groupId>
     <artifactId>printplace-tag</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
+    <name>SkyPrint</name>
 
     <dependencies>
         <dependency>
@@ -20,13 +21,14 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
     <build>
-        <finalName>Skyfall</finalName>
+        <finalName>${name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
+                    <finalName>${build.finalName}</finalName>
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
@@ -38,7 +40,7 @@
                     </archive>
                 </configuration>
             </plugin>
-	    <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
@@ -52,7 +54,7 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-	    <plugin>
+            <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.7</version>
                 <dependencies>
@@ -88,6 +90,75 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.akathist.maven.plugins.launch4j</groupId>
+                <artifactId>launch4j-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>l4j-clui</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>launch4j</goal>
+                        </goals>
+                        <configuration>
+                            <headerType>gui</headerType>
+                            <outfile>target/${build.finalName}.exe</outfile>
+                            <jar>target/${build.finalName}.jar</jar>
+                            <errTitle>${build.finalName}-error</errTitle>
+                            <icon>package/skyprint.ico</icon>
+                            <classPath>
+                                <mainClass>com.damytec.printplacetag.App</mainClass>
+                                <addDependencies>false</addDependencies>
+                                <preCp>anything</preCp>
+                            </classPath>
+                            <jre>
+                                <minVersion>1.8</minVersion>
+                                <opts>
+                                    <opt>-Djava.endorsed.dirs=./endorsed</opt>
+                                </opts>
+                            </jre>
+                            <versionInfo>
+                                <fileVersion>${version}.0</fileVersion>
+                                <txtFileVersion>${version}</txtFileVersion>
+                                <fileDescription>Programa escrito para auxiliar na medição de itens por folha imprimível</fileDescription>
+                                <copyright>Damy Tecnologia da Informação LTDA</copyright>
+                                <productVersion>${version}.0</productVersion>
+                                <txtProductVersion>${version}</txtProductVersion>
+                                <productName>${build.finalName}</productName>
+                                <internalName>${build.finalName}</internalName>
+                                <originalFilename>${build.finalName}.exe</originalFilename>
+                            </versionInfo>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>/package/assembly.xml</descriptor>
+                            </descriptors>
+                            <finalName>${build.finalName}-${version}</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+    <pluginRepositories>
+        <pluginRepository>
+<!--            LAUNCH4J REPO-->
+            <id>launch4j</id>
+            <name>Simulation @ TU Delft</name>
+            <url>http://simulation.tudelft.nl/maven/</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>

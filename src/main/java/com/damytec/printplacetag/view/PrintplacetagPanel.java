@@ -226,7 +226,7 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
 
     @Override
     public String title() {
-        return "Skyfall - " + PrintplacetagPanel.class.getPackage().getImplementationVersion();
+        return PrintplacetagPanel.class.getPackage().getImplementationTitle() + " - " + PrintplacetagPanel.class.getPackage().getImplementationVersion();
     }
 
     private void createUIComponents() {

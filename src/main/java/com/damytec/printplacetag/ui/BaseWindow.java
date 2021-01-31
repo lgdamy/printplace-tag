@@ -65,9 +65,9 @@ public class BaseWindow extends JFrame {
             }
         };
         basePanel.setLayout(new BorderLayout(0, 0));
-        headerPanel = new JPanel();
+        headerPanel = new GradientPanel(new Color(0x9DEAF9), new Color(0x75ACA6));
         headerPanel.setLayout(new BorderLayout(0, 0));
-        headerPanel.setBackground(new Color(-4276546));
+//        headerPanel.setBackground(new Color(-4276546));
         basePanel.add(headerPanel, BorderLayout.NORTH);
         headerPanel.add(logoButton, BorderLayout.WEST);
         final JLabel label1 = new JLabel();
