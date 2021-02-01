@@ -11,7 +11,7 @@
         <constraints border-constraint="Center"/>
         <properties>
           <continuousLayout value="false"/>
-          <dividerSize value="5"/>
+          <dividerSize value="0"/>
           <enabled value="false"/>
           <orientation value="0"/>
         </properties>
@@ -22,7 +22,7 @@
               <splitpane position="right"/>
             </constraints>
             <properties/>
-            <border type="none"/>
+            <border type="bevel-lowered"/>
             <children>
               <component id="ac48b" class="javax.swing.JLabel" binding="pageImage">
                 <constraints border-constraint="Center"/>
@@ -32,12 +32,6 @@
                   <text value=""/>
                 </properties>
               </component>
-              <toolbar id="13000">
-                <constraints border-constraint="North"/>
-                <properties/>
-                <border type="none"/>
-                <children/>
-              </toolbar>
             </children>
           </grid>
           <splitpane id="92398" binding="hSplit">
@@ -46,7 +40,7 @@
             </constraints>
             <properties>
               <dividerLocation value="600"/>
-              <dividerSize value="5"/>
+              <dividerSize value="0"/>
               <enabled value="false"/>
               <oneTouchExpandable value="false"/>
             </properties>
@@ -57,7 +51,7 @@
                   <splitpane position="left"/>
                 </constraints>
                 <properties/>
-                <border type="none"/>
+                <border type="bevel-lowered"/>
                 <children>
                   <component id="71d8c" class="javax.swing.JLabel">
                     <constraints>
@@ -207,7 +201,7 @@
                   <splitpane position="right"/>
                 </constraints>
                 <properties/>
-                <border type="none"/>
+                <border type="bevel-lowered"/>
                 <children>
                   <component id="2da9b" class="javax.swing.JTextPane" binding="resultText">
                     <constraints border-constraint="Center"/>
@@ -219,7 +213,7 @@
                   <grid id="df670" binding="customButtonHub" custom-create="true" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
                     <constraints border-constraint="West"/>
                     <properties/>
-                    <border type="none"/>
+                    <border type="empty"/>
                     <children/>
                   </grid>
                   <component id="721d9" class="javax.swing.JLabel" binding="resultLabel">

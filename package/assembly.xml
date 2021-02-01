@@ -12,7 +12,7 @@
             <outputDirectory>/${pom.name}</outputDirectory>
             <includes>
                 <include>*.exe</include>
-                <include>*.jar</include>
+                <include>${project.name}-${project.version}.jar</include>
             </includes>
         </fileSet>
         <fileSet>

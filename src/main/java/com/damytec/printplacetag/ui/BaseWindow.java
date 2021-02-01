@@ -3,6 +3,9 @@ package com.damytec.printplacetag.ui;
 import com.damytec.printplacetag.service.GithubService;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.plaf.BorderUIResource;
 import java.awt.*;
 
 /**

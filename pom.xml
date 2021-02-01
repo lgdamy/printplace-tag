@@ -6,47 +6,29 @@
 
     <groupId>com.damytec</groupId>
     <artifactId>printplace-tag</artifactId>
-    <version>1.1.2</version>
+    <version>1.2.0</version>
     <name>SkyPrint</name>
-
     <dependencies>
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>3.8.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>1.0-rc2</version>
         </dependency>
     </dependencies>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <main>com.damytec.printplacetag.App</main>
     </properties>
     <build>
-        <finalName>${name}</finalName>
+        <finalName>${project.name}</finalName>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <finalName>${build.finalName}</finalName>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.damytec.printplacetag.App</mainClass>
-                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -91,6 +73,32 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <shadedArtifactAttached>false</shadedArtifactAttached>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                        <Main-Class>${main}</Main-Class>
+                                        <Implementation-Title>${project.name}</Implementation-Title>
+                                        <Specification-Title>${project.name}</Specification-Title>
+                                        <Implementation-Version>${project.version}</Implementation-Version>
+                                    </manifestEntries>
+                                </transformer>
+                            </transformers>
+                            <finalName>${project.build.finalName}-${project.version}</finalName>
+<!--                            <outputFile>${project.build.directory}/${build.finalName}.jar</outputFile>-->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>com.akathist.maven.plugins.launch4j</groupId>
                 <artifactId>launch4j-maven-plugin</artifactId>
                 <executions>
@@ -102,12 +110,12 @@
                         </goals>
                         <configuration>
                             <headerType>gui</headerType>
-                            <outfile>target/${build.finalName}.exe</outfile>
-                            <jar>target/${build.finalName}.jar</jar>
-                            <errTitle>${build.finalName}-error</errTitle>
+                            <outfile>${project.build.directory}/${project.build.finalName}.exe</outfile>
+                            <jar>${project.build.directory}/${project.build.finalName}-${project.version}.jar</jar>
+                            <errTitle>${project.build.finalName}-error</errTitle>
                             <icon>package/skyprint.ico</icon>
                             <classPath>
-                                <mainClass>com.damytec.printplacetag.App</mainClass>
+                                <mainClass>${main}</mainClass>
                                 <addDependencies>false</addDependencies>
                                 <preCp>anything</preCp>
                             </classPath>
@@ -118,15 +126,15 @@
                                 </opts>
                             </jre>
                             <versionInfo>
-                                <fileVersion>${version}.0</fileVersion>
-                                <txtFileVersion>${version}</txtFileVersion>
+                                <fileVersion>${project.version}.0</fileVersion>
+                                <txtFileVersion>${project.version}</txtFileVersion>
                                 <fileDescription>Programa escrito para auxiliar na medição de itens por folha imprimível</fileDescription>
                                 <copyright>Damy Tecnologia da Informação LTDA</copyright>
-                                <productVersion>${version}.0</productVersion>
-                                <txtProductVersion>${version}</txtProductVersion>
-                                <productName>${build.finalName}</productName>
-                                <internalName>${build.finalName}</internalName>
-                                <originalFilename>${build.finalName}.exe</originalFilename>
+                                <productVersion>${project.version}.0</productVersion>
+                                <txtProductVersion>${project.version}</txtProductVersion>
+                                <productName>${project.build.finalName}</productName>
+                                <internalName>${project.build.finalName}</internalName>
+                                <originalFilename>${project.build.finalName}.exe</originalFilename>
                             </versionInfo>
                         </configuration>
                     </execution>
@@ -145,7 +153,7 @@
                             <descriptors>
                                 <descriptor>/package/assembly.xml</descriptor>
                             </descriptors>
-                            <finalName>${build.finalName}-${version}</finalName>
+                            <finalName>${project.build.finalName}-${project.version}</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                     </execution>

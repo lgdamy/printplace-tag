@@ -96,7 +96,8 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
 
             pageImage.setIcon(new ImageIcon(ImageUtil.resize(res.getImg(), lowerPanel.getHeight() - 10, lowerPanel.getWidth() - 10)));
             resultText.setText(res.getTpf().toHtml());
-            this.resultColor(res.getTpf().isLimiar() ? Color.PINK : Color.WHITE);
+
+            this.resultColor(res.getTpf().isLimiar() ? Color.PINK : UIManager.getColor("Panel.background"));
             resultLabel.setIcon(res.isBest() ? ok : nok);
             customButtonShow();
         } catch (Exception ex) {
@@ -196,12 +197,6 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
         this.larguraField.setText(DEFAULT_LARGURA);
         this.margemField.setText(DEFAULT_MARGEM);
         this.espacoField.setText(DEFAULT_ESPACO);
-//        this.orientacao = Orientacao.RETRATO;
-//        this.formato = Formato.RETO;
-//        this.showCorte.setSelected(true);
-//        this.showFolha.setSelected(true);
-//        this.showTags.setSelected(true);
-//        this.showMargem.setSelected(true);
         this.folhaCombo.setSelectedItem(Folha.A4);
     }
 
@@ -232,7 +227,7 @@ public class PrintplacetagPanel implements BaseWindow.ContentForm {
     private void createUIComponents() {
         customButtonHub  = new JPanel();
         customButtonHub.setLayout(new BoxLayout(customButtonHub,BoxLayout.Y_AXIS));
-        customButtonHub.setBackground(Color.WHITE);
+//        customButtonHub.setBackground(Color.WHITE);
     }
 
 
