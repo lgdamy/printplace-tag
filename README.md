@@ -1,4 +1,4 @@
-# Printplace Tag
+# SkyPrint
 ### Projeto para auxiliar os atendentes de balcão de uma gráfica
 
 Esse projeto tem a função de auxiliar na tomada de decisão sobre a orientação de impressão de tags ou etiquetas.
